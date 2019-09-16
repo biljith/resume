@@ -1,0 +1,245 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,a4paper,roman]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% modern themes
+\moderncvstyle{banking}                            % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                                % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{fontspec}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+% if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+\usepackage{multicol}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+\usepackage{import}
+
+% personal data
+\name{Biljith}{Thadichi}
+% \title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
+% \address{500 College Ave, Swarthmore, PA 19081 }{}{}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+% \phone[mobile]{909-839-3097}                   % optional, remove / comment the line if not wanted
+% \phone[fixed]{01234 123456}                    % optional, remove / comment the line if not wanted
+%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+% \email{xpan1@swarthmore.edu}                               % optional, remove / comment the line if not wanted
+% \homepage{shawnpan.me}                         % optional, remove / comment the line if not wanted
+% \extrainfo{}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+\newcommand*{\customcventry}[7][.25em]{
+  \begin{tabular}{@{}l} 
+    {\bfseries #4}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     { #5}
+  \end{tabular} \\
+  \begin{tabular}{@{}l} 
+    {\itshape #3}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     {\itshape #2}
+  \end{tabular}
+  \ifx&#7&%
+  \else{\\%
+    \begin{minipage}{\maincolumnwidth}%
+      \small#7%
+    \end{minipage}}\fi%
+  \par\addvspace{#1}}
+
+\newcommand*{\customcvproject}[4][.25em]{
+%   \vfill\noindent
+  \begin{tabular}{@{}l} 
+    {\bfseries #2}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     {\itshape #3}
+  \end{tabular}
+  \ifx&#4&%
+  \else{\\%
+    \begin{minipage}{\maincolumnwidth}%
+      \small#4%
+    \end{minipage}}\fi%
+  \par\addvspace{#1}}
+
+\newcommand*{\customcompanyname}[3][.25em]{
+  \begin{tabular}{@{}l} 
+    {\bfseries #2}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     { #3}
+  \end{tabular}
+}
+
+\newcommand*{\customposition}[5][.25em]{
+  \begin{tabular}{@{}l} 
+    {\bfseries #2}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     { #3}
+  \end{tabular}
+  \ifx&#5&%
+  \else{\\%
+    \begin{minipage}{\maincolumnwidth}%
+      \small#5%
+    \end{minipage}}\fi%
+  \par\addvspace{#1}
+}
+
+\newcommand*{\customcvexperience}[7][.25em]{
+  \begin{tabular}{@{}l} 
+    {\bfseries #2}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     { #3}
+  \end{tabular} \\
+  \begin{tabular}{@{}l} 
+    {\itshape #4}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     {\itshape #5}
+  \end{tabular}\\
+  \begin{tabular}{@{}l} 
+    {\itshape #6}
+  \end{tabular}
+  \hfill% move it to the right
+  \begin{tabular}{l@{}}
+     {\itshape #7}
+  \end{tabular}
+ }
+
+\setlength{\tabcolsep}{12pt}
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+\vspace*{-20mm}
+
+\begin{center}
+\begin{tabular}{ c c c c c}
+ \faEnvelopeO\enspace biljithjayan@gmail.com & \faMobile\enspace +17202163107  & \href{https://www.linkedin.com/in/biljith-thadichi-69859b61/}{Linkedin}\\  
+\end{tabular}
+\end{center}
+
+\section{EDUCATION}
+
+{\customcventry{Graduation date - May 2021}{Master of Science in Computer Science}{University of Colorado, Boulder}{Boulder, US}{}{}}
+
+{\customcventry{August 2012 - June 2016}{Bachelor of Technology in Computer Engineering GPA: 8.66/10}{Veermata Jijabai Technological Institute}{Mumbai, India}{}{}}
+
+\section{EXPERIENCE}
+{\customcompanyname{Samsung Research Institute}{Bangalore, India}
+
+{\customposition{Lead Engineer}{April 2019 - August 2019}{}
+{\begin{itemize}
+    \item Led a team of Engineers to research on Article Detection on Webpages. Was the second author on the research paper that was accepted to \textbf{INDICON 2019} conference.
+\end{itemize}
+}
+
+{\customposition{Senior Software Engineer}{April 2018 - March 2019}{}
+{\begin{itemize}
+    \item Major contribution to the research and commercialization of \textbf{Smart Anti Tracking} - a feature that protects user's privacy from online trackers. Collected data using browser automation, visualized patterns and trained an ML model to classify tracking domains
+\end{itemize}
+}
+
+{\customposition{Software Engineer}{April 2016 - March 2018}{}
+{\begin{itemize}
+    \item Major contribution to the design and commercialization of Protected Browsing - a feature that warns users if they attempt to navigate to malicious websites. Used SafetyNet API and integrated it with the browser to intercept each resource load.
+    \item Worked on a PoC project called Smart Knob that involved BLE, Atmega microcontroller and an Android app to create configurable buttons.
+\end{itemize}
+}
+
+{\customposition{Software Engineering Intern}{Summer 2015}{}
+{\begin{itemize}
+    \item Developed an Android app to measure the battery, CPU and other critical resources used by other apps. Wrote the main logic in C. Used Java Native Interface to communicate with UI.
+\end{itemize}
+}
+
+\section{PROJECTS}
+
+{\customcvproject{Reader Detection}{January 2019 – August 2019}
+{\begin{itemize}
+  \item Identified which parameters on a web page strongly correlate to a readable article. Built an ML model that classifies web pages using these parameters as features.
+\end{itemize}
+}
+}
+
+{\customcvproject{Smart Helmet}{Aug 2016 – Dec 2016}
+{\begin{itemize}
+  \item This solution was meant to go on the helmet, giving the user access to frequently used actions on his phone (like call, music, etc.) without having to take his phone out. This project won the first prize at 'Nipun' -  a competition held in Samsung Research Institute, Bangalore (SRI-B)
+\end{itemize}
+}
+
+\section{ACHIEVEMENTS AND EXTRACURRICULAR}
+\begin{minipage}{\maincolumnwidth}%
+	\small{
+    	\begin{itemize}
+    	  \item Cleared Professional Test, a highly reputed algorithm oriented test conducted throughout Samsung Research facilities around the world. SRI-B currently has only about 25\% people who cleared this test.
+    	  \item Received Employee of the Month award recognizing my contributions to the project.
+    	  \item Won 'Ultimate Coder', an intercollegiate competition that focused on using algorithms to solve problems.
+    	  \item Won the Nipun demo award for Smart Helmet project.
+    	  \item Contributed patches to open source Chromium project.
+    	  \item Won the best team award for contributions to SAT.
+          \item Media General Manager of College Fest, Technovanza 2014. Brought press coverage for the festival.
+		\end{itemize}}%
+\end{minipage}%
+% Publications from a BibTeX file without multibib
+%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{publications}                        % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+%-----       letter       ---------------------------------------------------------
+
+\end{document}
+
+
+%% end of file `template.tex'.
